@@ -21,6 +21,15 @@ public:
         create_solution_matrix();
     }
 
+    ~Backpack()
+    {
+        for (int i = 0; i < vw_size-1; i++)
+        {
+            delete[] solution_matrix[i];
+        }
+        delete[] solution_matrix;
+    }
+
 private:
     void create_solution_matrix()
     {
@@ -111,6 +120,9 @@ int main()
 
     Backpack *obj = new Backpack(values, weights, vw_size, backpack_size);
     obj->solve();
+
+    delete[] values;
+    delete[] weights;
 
     return 0;
 }
